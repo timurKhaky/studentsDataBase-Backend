@@ -49,10 +49,13 @@ module.exports.studentsController = {
   async getStudentByStatus(req, res) {
     try {
       const { title } = req.params;
-      const data = await Student.find({
-        status: { title: title },
-      });
-      return res.json(data);
+      const data = await Student.find();
+      const dataByStatus = data.filter(
+        (item) =>
+          String(item.status.title).toLowerCase() ===
+          String(title).toLowerCase()
+      );
+      return res.json(dataByStatus);
     } catch (error) {
       res.json({ error: error.message });
     }
