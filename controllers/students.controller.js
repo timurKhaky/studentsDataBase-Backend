@@ -40,7 +40,7 @@ module.exports.studentsController = {
   },
   async getAllStudents(req, res) {
     try {
-      const data = await Student.find();
+      const data = await Student.find({}, null, { sort: { fullname: 1 } });
       return res.json(data);
     } catch (error) {
       res.json({ error: error.message });
@@ -49,7 +49,7 @@ module.exports.studentsController = {
   async getStudentByStatus(req, res) {
     try {
       const { title } = req.params;
-      const data = await Student.find();
+      const data = await Student.find({}, null, { sort: { fullname: 1 } });
       const dataByStatus = data.filter(
         (item) =>
           String(item.status.title).toLowerCase() ===
