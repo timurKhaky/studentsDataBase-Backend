@@ -17,9 +17,11 @@ module.exports.studentsController = {
         status,
         changeDate,
       } = req.body;
+      const worker = User.findById(req.user.id);
       const { title, from, to } = status;
       const addedBy = req.user.id;
       const data = await Student.create({
+        addedBy: worker._id,
         department,
         fullname,
         gender,
