@@ -38,8 +38,8 @@ const StudentSchema = mongoose.Schema(
     },
     status: {
       title: { type: String, required: true },
-      from: { type: String, required: true },
-      to: { type: String, required: true },
+      from: { type: String, default: null },
+      to: { type: String, default: null },
     },
     changeDate: {
       type: String,
