@@ -43,7 +43,10 @@ module.exports.usersController = {
       const payload = {
         id: condidate.id,
       };
-      const token = jwt.sign(payload, process.env.SECRET_JWT_KEY, {});
+
+      const token = jwt.sign(payload, process.env.SECRET_JWT_KEY, {
+        expiresIn: "7d",
+      });
       res.json({
         token,
       });

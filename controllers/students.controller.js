@@ -3,26 +3,24 @@ const User = require("../models/User.model");
 
 module.exports.studentsController = {
   async postStudent(req, res) {
+    console.log(req.body.data);
     try {
       const {
         fullname,
         gender,
         students,
         faculty,
-        department,
         course,
         group,
         educationForm,
         educationType,
-        status,
         changeDate,
-      } = req.body;
+      } = req.body.data;
       const worker = User.findById(req.user.id);
-      const { title, from, to } = status;
       const addedBy = req.user.id;
       const data = await Student.create({
         addedBy: worker._id,
-        department,
+        department: worker.department,
         fullname,
         gender,
         students,
@@ -31,7 +29,7 @@ module.exports.studentsController = {
         group,
         educationForm,
         educationType,
-        status: { title, from, to },
+        status: { ...req.body.status },
         changeDate,
         addedBy,
       });

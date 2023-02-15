@@ -5,7 +5,6 @@ const StudentSchema = mongoose.Schema(
     addedBy: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "Student",
-      required: true,
     },
     fullname: {
       type: String,
@@ -14,7 +13,6 @@ const StudentSchema = mongoose.Schema(
     gender: { type: String, required: true },
     department: {
       type: String,
-      required: true,
     },
     faculty: {
       type: String,
