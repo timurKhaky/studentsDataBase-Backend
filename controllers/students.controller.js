@@ -37,14 +37,6 @@ module.exports.studentsController = {
       return res.json({ error: error.message });
     }
   },
-  async getAllStudents(req, res) {
-    try {
-      const data = await Student.find({}, null, { sort: { fullname: 1 } });
-      return res.json(data);
-    } catch (error) {
-      res.json({ error: error.message });
-    }
-  },
   async getStudentByStatus(req, res) {
     try {
       const { title } = req.params;
