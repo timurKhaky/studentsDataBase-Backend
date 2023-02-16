@@ -42,6 +42,7 @@ module.exports.usersController = {
     try {
       const payload = {
         id: condidate.id,
+        role: condidate.role,
       };
 
       const token = jwt.sign(payload, process.env.SECRET_JWT_KEY, {
