@@ -43,7 +43,7 @@ const StudentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    moreInfo: { type: String },
+    details: { type: String },
   },
 
   { timestamps: true }
