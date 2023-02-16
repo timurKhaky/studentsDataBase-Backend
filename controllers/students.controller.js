@@ -3,7 +3,6 @@ const User = require("../models/User.model");
 
 module.exports.studentsController = {
   async postStudent(req, res) {
-    console.log(req.body.data);
     try {
       const {
         fullname,
@@ -50,12 +49,16 @@ module.exports.studentsController = {
     try {
       const { title } = req.params;
       const data = await Student.find({}, null, { sort: { fullname: 1 } });
-      const dataByStatus = data.filter(
-        (item) =>
-          String(item.status.title).toLowerCase() ===
-          String(title).toLowerCase()
-      );
-      return res.json(dataByStatus);
+      if (title === "все") {
+        return res.json(data);
+      } else {
+        const dataByStatus = data.filter(
+          (item) =>
+            String(item.status.title).toLowerCase() ===
+            String(title).toLowerCase()
+        );
+        return res.json(dataByStatus);
+      }
     } catch (error) {
       res.json({ error: error.message });
     }
