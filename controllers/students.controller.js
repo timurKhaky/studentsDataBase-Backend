@@ -14,9 +14,14 @@ module.exports.studentsController = {
         educationForm,
         educationType,
         changeDate,
-      } = req.body.data;
+        status,
+        from,
+        to,
+        details,
+      } = req.body;
       const worker = User.findById(req.user.id);
       const addedBy = req.user.id;
+
       const data = await Student.create({
         addedBy: worker._id,
         department: worker.department,
@@ -28,7 +33,12 @@ module.exports.studentsController = {
         group,
         educationForm,
         educationType,
-        status: { ...req.body.status },
+        status,
+        relocation: {
+          from,
+          to,
+        },
+        details,
         changeDate,
         addedBy,
       });

@@ -34,8 +34,8 @@ const StudentSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    status: {
-      title: { type: String, required: true },
+    status: { type: String, required: true },
+    relocation: {
       from: { type: String, default: null },
       to: { type: String, default: null },
     },
