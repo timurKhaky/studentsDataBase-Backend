@@ -19,11 +19,11 @@ module.exports.studentsController = {
         to,
         details,
       } = req.body;
-      const worker = User.findById(req.user.id);
-      const addedBy = req.user.id;
+
+      const worker = await User.findById(req.user.id);
 
       const data = await Student.create({
-        addedBy: worker._id,
+        addedBy: req.user.id,
         department: worker.department,
         fullname,
         gender,
@@ -40,8 +40,8 @@ module.exports.studentsController = {
         },
         details,
         changeDate,
-        addedBy,
       });
+
       return res.json(data);
     } catch (error) {
       return res.json({ error: error.message });
