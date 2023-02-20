@@ -56,8 +56,7 @@ module.exports.studentsController = {
       } else {
         const dataByStatus = data.filter(
           (item) =>
-            String(item.status.title).toLowerCase() ===
-            String(title).toLowerCase()
+            String(item.status).toLowerCase() === String(title).toLowerCase()
         );
         return res.json(dataByStatus);
       }

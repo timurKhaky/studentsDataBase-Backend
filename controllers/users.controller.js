@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 module.exports.usersController = {
   async signUp(req, res) {
     try {
-      console.log(req.body);
       const { fullname, login, password, jobTitle, department } = req.body;
 
       const hash = await bcrypt.hash(
