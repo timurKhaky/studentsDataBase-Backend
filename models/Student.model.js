@@ -15,7 +15,7 @@ const StudentSchema = mongoose.Schema(
       type: String,
     },
     faculty: {
-      type: String,
+      type: String, 
       required: true,
     },
     course: {
