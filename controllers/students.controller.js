@@ -68,9 +68,22 @@ module.exports.studentsController = {
 
   async changeStudentData(req, res) {
     try {
-      const data = await Student.findByIdAndUpdate(req.params.id, {
-        ...req.body,
-      }, {new: true});
+      const data = await Student.findByIdAndUpdate(
+        req.params.id,
+        {
+          ...req.body,
+        },
+        { new: true }
+      );
+      return res.json(data);
+    } catch (error) {
+      res.json({ error: error.message });
+    }
+  },
+
+  async getStudentById(req, res) {
+    try {
+      const data = await Student.findById(req.params.id);
       return res.json(data);
     } catch (error) {
       res.json({ error: error.message });
