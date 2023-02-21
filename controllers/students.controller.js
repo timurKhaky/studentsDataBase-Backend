@@ -14,11 +14,9 @@ module.exports.studentsController = {
         educationForm,
         educationType,
         changeDate,
-        status,
-        from,
-        to,
         details,
-      } = req.body;
+      } = req.body.data;
+      const { status, from, to } = req.body.status;
 
       const worker = await User.findById(req.user.id);
 
@@ -64,12 +62,15 @@ module.exports.studentsController = {
       res.json({ error: error.message });
     }
   },
-
   async changeStudentData(req, res) {
     try {
-      const data = await Student.findByIdAndUpdate(req.params.id, {
-        ...req.body,
-      }, {new: true});
+      const data = await Student.findByIdAndUpdate(
+        req.params.id,
+        {
+          ...req.body,
+        },
+        { new: true }
+      );
       return res.json(data);
     } catch (error) {
       res.json({ error: error.message });
