@@ -49,7 +49,7 @@ module.exports.studentsController = {
     try {
       const { title } = req.params;
       const data = await Student.find({}, null, { sort: { fullname: 1 } });
-      if (title === "все") {
+      if (title.toLowerCase() === "все") {
         return res.json(data);
       } else {
         const dataByStatus = data.filter(
@@ -71,6 +71,15 @@ module.exports.studentsController = {
         },
         { new: true }
       );
+      return res.json(data);
+    } catch (error) {
+      res.json({ error: error.message });
+    }
+  },
+
+  async getStudentById(req, res) {
+    try {
+      const data = await Student.findById(req.params.id);
       return res.json(data);
     } catch (error) {
       res.json({ error: error.message });
