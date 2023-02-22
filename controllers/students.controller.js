@@ -64,6 +64,8 @@ module.exports.studentsController = {
   },
   async changeStudentData(req, res) {
     try {
+      
+
       const data = await Student.findByIdAndUpdate(
         req.params.id,
         {
