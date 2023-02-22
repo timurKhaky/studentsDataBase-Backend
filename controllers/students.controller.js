@@ -64,7 +64,11 @@ module.exports.studentsController = {
   },
   async changeStudentData(req, res) {
     try {
-      
+      const worker = await User.findById(req.user.id);
+      const student = await Student.findById(req.params.id);
+      if (String(worker._id) !== String(student.addedBy)) {
+        return res.json({ error: "Ошибка доступа" });
+      }
 
       const data = await Student.findByIdAndUpdate(
         req.params.id,
