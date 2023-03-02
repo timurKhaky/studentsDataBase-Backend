@@ -15,7 +15,7 @@ const StudentSchema = mongoose.Schema(
       type: String,
     },
     faculty: {
-      type: String, 
+      type: String,
       required: true,
     },
     course: {
@@ -23,7 +23,7 @@ const StudentSchema = mongoose.Schema(
       required: true,
     },
     group: {
-      type: Number,
+      type: String,
       required: true,
     },
     educationForm: {
@@ -40,6 +40,10 @@ const StudentSchema = mongoose.Schema(
       to: { type: String, default: null },
     },
     changeDate: {
+      type: String,
+      required: true,
+    },
+    direction: {
       type: String,
       required: true,
     },
